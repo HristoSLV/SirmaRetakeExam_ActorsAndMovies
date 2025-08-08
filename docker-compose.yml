@@ -1,7 +1,7 @@
 services:
-  actors_and_movies:
+  actors_and_movies_db:
     image: postgres:17.5
-    container_name: actors_and_movies_container
+    container_name: actors_and_movies_db_container
     environment:
       POSTGRES_DB: actors_and_movies_db
       POSTGRES_USER: user
@@ -9,6 +9,8 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - actors_movies_data:/var/lib/postgresql/data
+      - actors_and_movies_db_volume:/var/lib/postgresql/data
+
 volumes:
-  actors_movies_data:
+  actors_and_movies_db_volume:
+    name: actors_and_movies_db_volume
