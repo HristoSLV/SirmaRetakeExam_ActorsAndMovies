@@ -9,6 +9,8 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 
 @Entity
 @Table(name = "actors")
@@ -23,6 +25,6 @@ public class Actor {
 
     private String fullName;
 
-    private String birthDate;
+    private LocalDate birthDate;
 
 }

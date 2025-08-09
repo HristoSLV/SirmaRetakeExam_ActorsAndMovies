@@ -9,6 +9,8 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @Entity
 @Table(name = "movies")
 @Getter
@@ -22,5 +24,5 @@ public class Movie {
 
     private String title;
 
-    private String releaseDate;
+    private LocalDate releaseDate;
 }
