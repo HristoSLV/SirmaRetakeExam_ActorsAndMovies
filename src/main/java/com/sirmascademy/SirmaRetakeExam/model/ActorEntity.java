@@ -9,12 +9,13 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "actors")
 @Getter
 @Setter
-public class Actor {
+public class ActorEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +24,6 @@ public class Actor {
 
     private String fullName;
 
-    private String birthDate;
+    private LocalDate birthDate;
 
 }

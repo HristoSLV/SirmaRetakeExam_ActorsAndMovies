@@ -10,17 +10,20 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "movies")
+@Table(name = "roles")
 @Getter
 @Setter
-public class Movie {
+public class RoleEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
-    private String title;
+    private Long actorId;
 
-    private String releaseDate;
+    private Long movieId;
+
+    private String roleName;
+
 }
