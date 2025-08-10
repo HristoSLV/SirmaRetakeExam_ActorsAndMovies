@@ -9,20 +9,21 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @Entity
-@Table(name = "roles")
+@Table(name = "movies")
 @Getter
 @Setter
-public class Roles {
+public class MovieEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
-    private Long actorId;
+    private String title;
 
-    private Long movieId;
+    private LocalDate releaseDate;
 
-    private String roleName;
 }

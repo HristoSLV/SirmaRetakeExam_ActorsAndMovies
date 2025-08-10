@@ -12,17 +12,18 @@ import lombok.Setter;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "movies")
+@Table(name = "actors")
 @Getter
 @Setter
-public class Movie {
+public class ActorEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
-    private String title;
+    private String fullName;
 
-    private LocalDate releaseDate;
+    private LocalDate birthDate;
+
 }
