@@ -1,5 +1,6 @@
 package com.sirmascademy.SirmaRetakeExam.controller;
 
+import com.sirmascademy.SirmaRetakeExam.dto.RoleRequestDto;
 import com.sirmascademy.SirmaRetakeExam.dto.RoleResponseDto;
 import com.sirmascademy.SirmaRetakeExam.service.RoleService;
 import jakarta.validation.Valid;
@@ -27,8 +28,8 @@ public class RoleController {
     }
 
     @PostMapping
-    public ResponseEntity<RoleResponseDto> createRole(@Valid @RequestBody RoleResponseDto roleResponseDto) {
-        RoleResponseDto createdRole = roleService.createRole(roleResponseDto);
+    public ResponseEntity<RoleResponseDto> createRole(@Valid @RequestBody RoleRequestDto roleRequestDto) {
+        RoleResponseDto createdRole = roleService.createRole(roleRequestDto);
         return new ResponseEntity<>(createdRole, HttpStatus.CREATED);
     }
 
@@ -51,8 +52,8 @@ public class RoleController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<RoleResponseDto> updateRole(@Valid @PathVariable("id") Long id, @RequestBody RoleResponseDto roleResponseDto) {
-        RoleResponseDto updatedRole = roleService.updateRole(id, roleResponseDto);
+    public ResponseEntity<RoleResponseDto> updateRole(@Valid @PathVariable("id") Long id, @RequestBody RoleRequestDto roleRequestDto) {
+        RoleResponseDto updatedRole = roleService.updateRole(id, roleRequestDto);
         return new ResponseEntity<>(updatedRole, HttpStatus.OK);
     }
 }

@@ -1,5 +1,6 @@
 package com.sirmascademy.SirmaRetakeExam.service;
 
+import com.sirmascademy.SirmaRetakeExam.dto.RoleRequestDto;
 import com.sirmascademy.SirmaRetakeExam.dto.RoleResponseDto;
 import com.sirmascademy.SirmaRetakeExam.exception.RoleNotFoundException;
 import com.sirmascademy.SirmaRetakeExam.mapper.RoleMapper;
@@ -18,14 +19,14 @@ public class RoleService {
         this.roleRepository = roleRepository;
     }
 
-    public RoleResponseDto createRole(RoleResponseDto roleResponseDto) {
+    public RoleResponseDto createRole(RoleRequestDto roleRequestDto) {
         RoleEntity roleEntity = new RoleEntity();
 
-        roleEntity.setActorId(roleResponseDto.getActorId());
-        roleEntity.setMovieId(roleResponseDto.getMovieId());
+        roleEntity.setActorId(roleRequestDto.getActorId());
+        roleEntity.setMovieId(roleRequestDto.getMovieId());
 
-        if (roleResponseDto.getRoleName() != null) {
-            roleEntity.setRoleName(roleResponseDto.getRoleName());
+        if (roleRequestDto.getRoleName() != null) {
+            roleEntity.setRoleName(roleRequestDto.getRoleName());
         }
 
         roleRepository.save(roleEntity);
@@ -47,15 +48,15 @@ public class RoleService {
         return RoleMapper.toRoleDto(roleEntity);
     }
 
-    public RoleResponseDto updateRole(Long id, RoleResponseDto roleResponseDto) {
+    public RoleResponseDto updateRole(Long id, RoleRequestDto roleRequestDto) {
         RoleEntity roleEntity = roleRepository.findById(id)
                 .orElseThrow(() -> new RoleNotFoundException(id));
 
-        roleEntity.setActorId(roleResponseDto.getActorId());
-        roleEntity.setMovieId(roleResponseDto.getMovieId());
+        roleEntity.setActorId(roleRequestDto.getActorId());
+        roleEntity.setMovieId(roleRequestDto.getMovieId());
 
-        if (roleResponseDto.getRoleName() != null) {
-            roleEntity.setRoleName(roleResponseDto.getRoleName());
+        if (roleRequestDto.getRoleName() != null) {
+            roleEntity.setRoleName(roleRequestDto.getRoleName());
         }
 
         roleRepository.save(roleEntity);
