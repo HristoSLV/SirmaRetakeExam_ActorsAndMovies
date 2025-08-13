@@ -5,11 +5,12 @@
 
 ## Based on these requirements, I have come to the following goals in this task:
 
-1. Creating a service for importing data from CSV files.
-   - the csv files are located in /resources/taskfiles
-3. Storing the data in a database.
-4. Creating a REST API for accessing the data.
-5. Creating an algorithm for finding the pair of actors who have starred in the most movies together.
+1. Creating a service for importing data from CSV files:
+   - the csv files are located in /resources/taskFiles.
+   - the csv parser automatically detects between different date formats.
+2. Storing the data in a database.
+3. Creating a REST API for accessing the data.
+4. Creating an algorithm for finding the pair of actors who have starred in the most movies together.
 
 ## My algorithm works in the following way:
 
@@ -24,6 +25,8 @@
 ## To run the application:
 
 1. The project uses a dockerized database and port 8089 by default. 
-2. After starting docker, run the following command:
+2. After starting docker, run the following command in the terminal:
    - ``docker-compose up``
 3. Start the application manually from the IDE.
+4. Send REST requests to the API at:
+   - ``http://localhost:8089/``

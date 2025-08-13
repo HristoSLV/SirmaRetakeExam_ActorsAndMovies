@@ -25,7 +25,9 @@ public class RoleService {
         roleEntity.setActorId(roleRequestDto.getActorId());
         roleEntity.setMovieId(roleRequestDto.getMovieId());
 
-        if (roleRequestDto.getRoleName() != null) {
+        if (roleRequestDto.getRoleName().equalsIgnoreCase("null")) {
+            roleEntity.setRoleName("Non credited role");
+        } else {
             roleEntity.setRoleName(roleRequestDto.getRoleName());
         }
 
@@ -72,4 +74,5 @@ public class RoleService {
 
         return RoleMapper.toRoleDto(roleEntity);
     }
+
 }

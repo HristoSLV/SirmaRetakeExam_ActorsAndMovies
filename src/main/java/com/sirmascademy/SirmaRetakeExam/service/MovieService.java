@@ -62,4 +62,5 @@ public class MovieService {
         movieRepository.delete(movieEntity);
         return MovieMapper.toMovieDto(movieEntity);
     }
+
 }
