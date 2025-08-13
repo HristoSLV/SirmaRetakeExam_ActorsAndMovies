@@ -52,7 +52,11 @@ public class ActorPairService {
                     .distinct()
                     .toList();
 
-            for (int i = 0; i < actorIds.size(); i++) {
+            if (actorIds.size() < 2) {
+                continue;
+            }
+
+            for (int i = 0; i < actorIds.size() - 1; i++) {
                 for (int j = i + 1; j < actorIds.size(); j++) {
                     ActorEntity actorOne = actorsMap.get(actorIds.get(i));
                     ActorEntity actorTwo = actorsMap.get(actorIds.get(j));
@@ -95,7 +99,11 @@ public class ActorPairService {
                     .distinct()
                     .toList();
 
-            for (int i = 0; i < actorIds.size(); i++) {
+            if (actorIds.size() < 2) {
+                continue;
+            }
+
+            for (int i = 0; i < actorIds.size() - 1; i++) {
                 for (int j = i + 1; j < actorIds.size(); j++) {
                     ActorEntity actor1 = actorsMap.get(actorIds.get(i));
                     ActorEntity actor2 = actorsMap.get(actorIds.get(j));
