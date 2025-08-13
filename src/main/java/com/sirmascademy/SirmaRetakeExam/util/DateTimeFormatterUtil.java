@@ -1,5 +1,7 @@
 package com.sirmascademy.SirmaRetakeExam.util;
 
+import com.sirmascademy.SirmaRetakeExam.exception.DateFormatDetectionException;
+import com.sirmascademy.SirmaRetakeExam.exception.DateParsingException;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
@@ -54,7 +56,7 @@ public class DateTimeFormatterUtil {
             }
         }
 
-        throw new IllegalArgumentException("Cannot parse date: " + date);
+        throw new DateParsingException("Cannot parse date: " + date);
     }
 
     public static List<DateTimeFormatter> detectDateFormat(String resourcePath, int dateColumnIndex) {
@@ -95,10 +97,10 @@ public class DateTimeFormatterUtil {
 
             }
 
-            throw new RuntimeException("Could not detect date format for: " + resourcePath);
+            throw new DateFormatDetectionException("Could not detect date format for: " + resourcePath);
 
         } catch (IOException e) {
-            throw new RuntimeException("Error detecting date format for: " + resourcePath, e);
+            throw new DateFormatDetectionException("Error detecting date format for: " + resourcePath, e);
         }
     }
 
