@@ -25,7 +25,7 @@
 ## To run the application:
 
 1. The project uses a dockerized database and port 8089 by default. 
-2. After starting docker, run the following command:
+2. After starting docker, run the following command in the terminal:
    - ``docker-compose up``
 3. Start the application manually from the IDE.
 4. Send REST requests to the API at:
