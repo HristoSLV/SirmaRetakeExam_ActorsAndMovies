@@ -67,7 +67,9 @@ public class ActorPairService {
 
         return pairToMovies.entrySet().stream()
                 .max(Comparator.comparingInt(e -> e.getValue().size()))
-                .map(entry -> new ActorPairWithMovies(entry.getKey(), entry.getValue().size(), entry.getValue()))
+                .map(entry -> new ActorPairWithMovies(entry.getKey(),
+                        entry.getValue().size(),
+                        entry.getValue()))
                 .orElse(null);
     }
 
