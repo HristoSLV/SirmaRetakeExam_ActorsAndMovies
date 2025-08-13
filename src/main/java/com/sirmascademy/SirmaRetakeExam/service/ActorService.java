@@ -61,4 +61,5 @@ public class ActorService {
         actorRepository.delete(actorEntity);
         return ActorMapper.toActorDto(actorEntity);
     }
+
 }

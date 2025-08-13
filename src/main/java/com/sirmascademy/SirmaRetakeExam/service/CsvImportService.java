@@ -12,6 +12,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.Objects;
 
 @Service
 public class CsvImportService {
@@ -33,8 +36,11 @@ public class CsvImportService {
     }
 
     public void importActors() {
+
+        List<DateTimeFormatter> dateFormat = DateTimeFormatterUtil.detectDateFormat(ACTOR_FILE, 2);
+
         try (InputStream inputStream = getClass().getResourceAsStream(ACTOR_FILE);
-             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream))) {
+             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(inputStream)))) {
 
             String line;
             boolean isFirstRow = true;
@@ -53,7 +59,7 @@ public class CsvImportService {
 
                 try {
                     String fullName = parts[1].trim();
-                    LocalDate birthDate = DateTimeFormatterUtil.parseDateFromAllFormats(parts[2].trim());
+                    LocalDate birthDate = DateTimeFormatterUtil.parseDateFromFormat(parts[2].trim(), dateFormat);
 
                     if (fullName.length() < 2 || fullName.length() > 80) {
                         System.err.println("Invalid full name in actors file: " + fullName + " on row: " + line);
@@ -81,8 +87,11 @@ public class CsvImportService {
     }
 
     public void importMovies() {
+
+        List<DateTimeFormatter> dateFormat = DateTimeFormatterUtil.detectDateFormat(MOVIE_FILE, 2);
+
         try (InputStream inputStream = getClass().getResourceAsStream(MOVIE_FILE);
-             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream))) {
+             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(inputStream)))) {
 
             String line;
             boolean isFirstRow = true;
@@ -102,7 +111,7 @@ public class CsvImportService {
 
                 try {
                     String title = parts[1].trim();
-                    LocalDate releaseDate = DateTimeFormatterUtil.parseDateFromAllFormats(parts[2].trim());
+                    LocalDate releaseDate = DateTimeFormatterUtil.parseDateFromFormat(parts[2].trim(), dateFormat);
 
                     if (title.length() < 2 || title.length() > 80) {
                         System.err.println("Invalid title in movies file: " + title + " on row: " + line);
@@ -131,7 +140,7 @@ public class CsvImportService {
 
     public void importRoles() {
         try (InputStream inputStream = getClass().getResourceAsStream(ROLE_FILE);
-             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream))) {
+             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(inputStream)))) {
 
             String line;
             boolean isFirstRow = true;
