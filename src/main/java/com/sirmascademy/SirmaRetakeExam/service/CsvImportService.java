@@ -3,6 +3,9 @@ package com.sirmascademy.SirmaRetakeExam.service;
 import com.sirmascademy.SirmaRetakeExam.dto.ActorRequestDto;
 import com.sirmascademy.SirmaRetakeExam.dto.MovieRequestDto;
 import com.sirmascademy.SirmaRetakeExam.dto.RoleRequestDto;
+import com.sirmascademy.SirmaRetakeExam.exception.ActorImportException;
+import com.sirmascademy.SirmaRetakeExam.exception.MovieImportException;
+import com.sirmascademy.SirmaRetakeExam.exception.RoleImportException;
 import com.sirmascademy.SirmaRetakeExam.util.DateTimeFormatterUtil;
 import org.springframework.stereotype.Service;
 
@@ -78,9 +81,9 @@ public class CsvImportService {
 
             }
         } catch (FileNotFoundException e) {
-            throw new RuntimeException("Actors File not found" + e);
+            throw new ActorImportException("Actors File not found", e);
         } catch (IOException e) {
-            throw new RuntimeException("Error reading actors file" + e);
+            throw new ActorImportException("Error reading actors file", e);
         }
 
         System.out.println("Actors imported");
@@ -130,9 +133,9 @@ public class CsvImportService {
 
             }
         } catch (FileNotFoundException e) {
-            throw new RuntimeException("Movies File not found" + e);
+            throw new MovieImportException("Movies File not found", e);
         } catch (IOException e) {
-            throw new RuntimeException("Error reading movies file" + e);
+            throw new MovieImportException("Error reading movies file", e);
         }
 
         System.out.println("Movies imported");
@@ -190,9 +193,9 @@ public class CsvImportService {
 
             }
         } catch (FileNotFoundException e) {
-            throw new RuntimeException("Roles File not found" + e);
+            throw new RoleImportException("Roles File not found", e);
         } catch (IOException e) {
-            throw new RuntimeException("Error reading roles file" + e);
+            throw new RoleImportException("Error reading roles file", e);
         }
 
         System.out.println("Roles imported");
