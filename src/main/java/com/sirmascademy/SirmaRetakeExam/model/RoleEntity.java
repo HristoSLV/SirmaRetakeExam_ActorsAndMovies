@@ -26,7 +26,6 @@ public class RoleEntity {
 
     private String roleName;
 
-
     @Override
     public String toString() {
         return "RoleEntity{" +
