@@ -26,4 +26,13 @@ public class ActorEntity {
 
     private LocalDate birthDate;
 
+    @Override
+    public String toString() {
+        return "ActorEntity{" +
+                "id=" + id +
+                ", fullName='" + fullName + '\'' +
+                ", birthDate=" + birthDate +
+                '}';
+    }
+
 }

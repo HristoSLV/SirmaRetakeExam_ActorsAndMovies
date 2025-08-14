@@ -26,4 +26,15 @@ public class RoleEntity {
 
     private String roleName;
 
+
+    @Override
+    public String toString() {
+        return "RoleEntity{" +
+                "id=" + id +
+                ", actorId=" + actorId +
+                ", movieId=" + movieId +
+                ", roleName='" + roleName + '\'' +
+                '}';
+    }
+
 }

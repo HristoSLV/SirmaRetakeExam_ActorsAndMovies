@@ -26,4 +26,13 @@ public class MovieEntity {
 
     private LocalDate releaseDate;
 
+    @Override
+    public String toString() {
+        return "MovieEntity{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", releaseDate=" + releaseDate +
+                '}';
+    }
+
 }

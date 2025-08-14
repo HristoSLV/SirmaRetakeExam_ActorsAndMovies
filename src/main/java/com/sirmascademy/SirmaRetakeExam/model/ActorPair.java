@@ -37,4 +37,13 @@ public class ActorPair {
     public int hashCode() {
         return Objects.hash(actor1.getId(), actor2.getId());
     }
+
+    @Override
+    public String toString() {
+        return "ActorPair{" +
+                "actor1=" + actor1.getId() +
+                ", actor2=" + actor2.getId() +
+                '}';
+    }
+
 }
