@@ -17,4 +17,13 @@ public class ActorPairWithMovies {
 
     private List<MovieEntity> listOfMovies;
 
+    @Override
+    public String toString() {
+        return "ActorPairWithMovies{" +
+                "actorPair=" + actorPair +
+                ", movieCount=" + movieCount +
+                ", listOfMovies=" + listOfMovies +
+                '}';
+    }
+
 }

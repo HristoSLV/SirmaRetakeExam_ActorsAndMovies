@@ -40,36 +40,36 @@ public class ActorPairService {
                 .collect(Collectors.toMap(MovieEntity::getId, movie -> movie));
 
 
-        Map<ActorPair, List<MovieEntity>> pairToMovies = new HashMap<>();
+        Map<ActorPair, List<MovieEntity>> pairWithListOfMoviesMap = new HashMap<>();
 
-        Map<Long, List<RoleEntity>> rolesByMovie = allRoles.stream()
+        Map<Long, List<RoleEntity>> rolesGroupedByMovieId = allRoles.stream()
                 .collect(Collectors.groupingBy(RoleEntity::getMovieId));
 
 
-        for (List<RoleEntity> rolesInMovie : rolesByMovie.values()) {
-            List<Long> actorIds = rolesInMovie.stream()
+        for (List<RoleEntity> rolesInMovie : rolesGroupedByMovieId.values()) {
+            List<Long> actorIdsInCurrentMovie = rolesInMovie.stream()
                     .map(RoleEntity::getActorId)
                     .distinct()
                     .toList();
 
-            if (actorIds.size() < 2) {
+            if (actorIdsInCurrentMovie.size() < 2) {
                 continue;
             }
 
-            for (int i = 0; i < actorIds.size() - 1; i++) {
-                for (int j = i + 1; j < actorIds.size(); j++) {
-                    ActorEntity actorOne = actorsMap.get(actorIds.get(i));
-                    ActorEntity actorTwo = actorsMap.get(actorIds.get(j));
+            for (int i = 0; i < actorIdsInCurrentMovie.size() - 1; i++) {
+                for (int j = i + 1; j < actorIdsInCurrentMovie.size(); j++) {
+                    ActorEntity actorOne = actorsMap.get(actorIdsInCurrentMovie.get(i));
+                    ActorEntity actorTwo = actorsMap.get(actorIdsInCurrentMovie.get(j));
 
                     ActorPair pair = new ActorPair(actorOne, actorTwo);
 
-                    pairToMovies.computeIfAbsent(pair, _ -> new ArrayList<>())
+                    pairWithListOfMoviesMap.computeIfAbsent(pair, _ -> new ArrayList<>())
                             .add(moviesMap.get(rolesInMovie.getFirst().getMovieId()));
                 }
             }
         }
 
-        return pairToMovies.entrySet().stream()
+        return pairWithListOfMoviesMap.entrySet().stream()
                 .max(Comparator.comparingInt(e -> e.getValue().size()))
                 .map(entry -> new ActorPairWithMovies(entry.getKey(),
                         entry.getValue().size(),
@@ -87,40 +87,40 @@ public class ActorPairService {
                 .collect(Collectors.toMap(MovieEntity::getId, m -> m));
 
 
-        Map<ActorPair, List<MovieEntity>> pairToMovies = new HashMap<>();
+        Map<ActorPair, List<MovieEntity>> pairWithListOfMoviesMap = new HashMap<>();
 
-        Map<Long, List<RoleEntity>> rolesByMovie = allRoles.stream()
+        Map<Long, List<RoleEntity>> rolesGroupedByMovieId = allRoles.stream()
                 .collect(Collectors.groupingBy(RoleEntity::getMovieId));
 
 
-        for (List<RoleEntity> rolesInMovie : rolesByMovie.values()) {
-            List<Long> actorIds = rolesInMovie.stream()
+        for (List<RoleEntity> rolesInMovie : rolesGroupedByMovieId.values()) {
+            List<Long> actorIdsInCurrentMovie = rolesInMovie.stream()
                     .map(RoleEntity::getActorId)
                     .distinct()
                     .toList();
 
-            if (actorIds.size() < 2) {
+            if (actorIdsInCurrentMovie.size() < 2) {
                 continue;
             }
 
-            for (int i = 0; i < actorIds.size() - 1; i++) {
-                for (int j = i + 1; j < actorIds.size(); j++) {
-                    ActorEntity actor1 = actorsMap.get(actorIds.get(i));
-                    ActorEntity actor2 = actorsMap.get(actorIds.get(j));
+            for (int i = 0; i < actorIdsInCurrentMovie.size() - 1; i++) {
+                for (int j = i + 1; j < actorIdsInCurrentMovie.size(); j++) {
+                    ActorEntity actor1 = actorsMap.get(actorIdsInCurrentMovie.get(i));
+                    ActorEntity actor2 = actorsMap.get(actorIdsInCurrentMovie.get(j));
                     ActorPair pair = new ActorPair(actor1, actor2);
 
-                    pairToMovies.computeIfAbsent(pair, _ -> new ArrayList<>())
+                    pairWithListOfMoviesMap.computeIfAbsent(pair, _ -> new ArrayList<>())
                             .add(moviesMap.get(rolesInMovie.getFirst().getMovieId()));
                 }
             }
         }
 
-        int maxMoviesTogether = pairToMovies.values().stream()
+        int maxMoviesTogether = pairWithListOfMoviesMap.values().stream()
                 .mapToInt(List::size)
                 .max()
                 .orElse(0);
 
-        return pairToMovies.entrySet().stream()
+        return pairWithListOfMoviesMap.entrySet().stream()
                 .filter(entry -> entry.getValue().size() == maxMoviesTogether)
                 .map(entry -> new ActorPairWithMovies(entry.getKey(),
                         entry.getValue().size(),
