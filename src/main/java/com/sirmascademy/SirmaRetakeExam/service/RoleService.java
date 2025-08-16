@@ -26,7 +26,6 @@ public class RoleService {
         roleEntity.setMovieId(roleRequestDto.getMovieId());
 
         if (roleRequestDto.getRoleName().equalsIgnoreCase("null")) {
-            roleEntity.setRoleName("Non credited role");
         } else {
             roleEntity.setRoleName(roleRequestDto.getRoleName());
         }
