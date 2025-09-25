@@ -25,9 +25,7 @@ public class RoleService {
         roleEntity.setActorId(roleRequestDto.getActorId());
         roleEntity.setMovieId(roleRequestDto.getMovieId());
 
-        if (roleRequestDto.getRoleName().equalsIgnoreCase("null")) {
-
-        } else {
+        if (!roleRequestDto.getRoleName().equalsIgnoreCase("null")) {
             roleEntity.setRoleName(roleRequestDto.getRoleName());
         }
 

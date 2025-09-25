@@ -105,9 +105,9 @@ public class ActorPairService {
 
             for (int i = 0; i < actorIdsInCurrentMovie.size() - 1; i++) {
                 for (int j = i + 1; j < actorIdsInCurrentMovie.size(); j++) {
-                    ActorEntity actor1 = actorsMap.get(actorIdsInCurrentMovie.get(i));
-                    ActorEntity actor2 = actorsMap.get(actorIdsInCurrentMovie.get(j));
-                    ActorPair pair = new ActorPair(actor1, actor2);
+                    ActorEntity actorOne = actorsMap.get(actorIdsInCurrentMovie.get(i));
+                    ActorEntity actorTwo = actorsMap.get(actorIdsInCurrentMovie.get(j));
+                    ActorPair pair = new ActorPair(actorOne, actorTwo);
 
                     pairWithListOfMoviesMap.computeIfAbsent(pair, _ -> new ArrayList<>())
                             .add(moviesMap.get(rolesInMovie.getFirst().getMovieId()));

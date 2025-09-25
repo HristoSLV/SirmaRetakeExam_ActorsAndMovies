@@ -26,8 +26,12 @@ public class ActorPair {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof ActorPair)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof ActorPair)) {
+            return false;
+        }
         ActorPair that = (ActorPair) o;
         return Objects.equals(actor1.getId(), that.actor1.getId()) &&
                 Objects.equals(actor2.getId(), that.actor2.getId());
