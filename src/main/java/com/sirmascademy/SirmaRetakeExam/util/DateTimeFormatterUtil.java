@@ -111,7 +111,9 @@ public class DateTimeFormatterUtil {
             try {
                 LocalDate.parse(normalizedDate, formatter);
                 return true;
-            } catch (DateTimeParseException ignored) { }
+            } catch (DateTimeParseException ignored) {
+
+            }
         }
 
         return false;
