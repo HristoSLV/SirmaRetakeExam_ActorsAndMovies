@@ -81,10 +81,10 @@ public class ActorPairService {
         List<RoleEntity> allRoles = roleRepository.findAll();
 
         Map<Long, ActorEntity> actorsMap = actorRepository.findAll().stream()
-                .collect(Collectors.toMap(ActorEntity::getId, a -> a));
+                .collect(Collectors.toMap(ActorEntity::getId, actor -> actor));
 
         Map<Long, MovieEntity> moviesMap = movieRepository.findAll().stream()
-                .collect(Collectors.toMap(MovieEntity::getId, m -> m));
+                .collect(Collectors.toMap(MovieEntity::getId, movie -> movie));
 
 
         Map<ActorPair, List<MovieEntity>> pairWithListOfMoviesMap = new HashMap<>();
@@ -107,6 +107,7 @@ public class ActorPairService {
                 for (int j = i + 1; j < actorIdsInCurrentMovie.size(); j++) {
                     ActorEntity actorOne = actorsMap.get(actorIdsInCurrentMovie.get(i));
                     ActorEntity actorTwo = actorsMap.get(actorIdsInCurrentMovie.get(j));
+
                     ActorPair pair = new ActorPair(actorOne, actorTwo);
 
                     pairWithListOfMoviesMap.computeIfAbsent(pair, _ -> new ArrayList<>())
