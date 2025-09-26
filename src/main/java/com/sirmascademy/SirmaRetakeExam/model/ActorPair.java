@@ -9,17 +9,17 @@ import java.util.Objects;
 @NoArgsConstructor
 public class ActorPair {
 
-    private ActorEntity actor1;
+    private ActorEntity actorOne;
 
-    private ActorEntity actor2;
+    private ActorEntity actorTwo;
 
-    public ActorPair(ActorEntity actor1, ActorEntity actor2) {
-        if (actor1.getId() < actor2.getId()) {
-            this.actor1 = actor1;
-            this.actor2 = actor2;
+    public ActorPair(ActorEntity actorOne, ActorEntity actorTwo) {
+        if (actorOne.getId() < actorTwo.getId()) {
+            this.actorOne = actorOne;
+            this.actorTwo = actorTwo;
         } else {
-            this.actor1 = actor2;
-            this.actor2 = actor1;
+            this.actorOne = actorTwo;
+            this.actorTwo = actorOne;
         }
 
     }
@@ -33,20 +33,20 @@ public class ActorPair {
             return false;
         }
         ActorPair that = (ActorPair) o;
-        return Objects.equals(actor1.getId(), that.actor1.getId()) &&
-                Objects.equals(actor2.getId(), that.actor2.getId());
+        return Objects.equals(actorOne.getId(), that.actorOne.getId()) &&
+                Objects.equals(actorTwo.getId(), that.actorTwo.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(actor1.getId(), actor2.getId());
+        return Objects.hash(actorOne.getId(), actorTwo.getId());
     }
 
     @Override
     public String toString() {
         return "ActorPair{" +
-                "actor1=" + actor1.getId() +
-                ", actor2=" + actor2.getId() +
+                "actor1=" + actorOne.getId() +
+                ", actor2=" + actorTwo.getId() +
                 '}';
     }
 
